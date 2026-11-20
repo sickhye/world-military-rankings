@@ -68,6 +68,7 @@ const compareSelect = document.querySelector("#compare-select");
 const searchInput = document.querySelector("#search-input");
 const rankingContent = document.querySelector("#ranking-content");
 const compareMessage = document.querySelector("#compare-message");
+const viewTabs = Array.from(document.querySelectorAll(".view-tab"));
 const resultCount = document.querySelector("#result-count");
 const yearNote = document.querySelector("#year-note");
 const olderButton = document.querySelector("#older-year");
@@ -349,6 +350,17 @@ function setRaceYear(index) {
   renderRace();
 }
 
+function selectViewTab(selectedTab, moveFocus = false) {
+  for (const tab of viewTabs) {
+    const selected = tab === selectedTab;
+    tab.setAttribute("aria-selected", String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+    document.getElementById(tab.getAttribute("aria-controls")).hidden = !selected;
+  }
+  if (selectedTab.id !== "tab-race") stopRace();
+  if (moveFocus) selectedTab.focus();
+}
+
 function updateComparison() {
   document.querySelectorAll(".change-list").forEach((list) => list.remove());
   delete compareMessage.dataset.hasRows;
@@ -401,6 +413,19 @@ async function initialize() {
     searchInput.addEventListener("input", renderRanking);
     olderButton.addEventListener("click", () => moveYear(-1));
     newerButton.addEventListener("click", () => moveYear(1));
+    viewTabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => selectViewTab(tab));
+      tab.addEventListener("keydown", (event) => {
+        let nextIndex;
+        if (event.key === "ArrowRight") nextIndex = (index + 1) % viewTabs.length;
+        else if (event.key === "ArrowLeft") nextIndex = (index - 1 + viewTabs.length) % viewTabs.length;
+        else if (event.key === "Home") nextIndex = 0;
+        else if (event.key === "End") nextIndex = viewTabs.length - 1;
+        if (nextIndex === undefined) return;
+        event.preventDefault();
+        selectViewTab(viewTabs[nextIndex], true);
+      });
+    });
     racePlayButton.addEventListener("click", () => {
       if (raceTimer === undefined) startRace();
       else stopRace();
