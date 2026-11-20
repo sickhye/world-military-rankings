@@ -72,7 +72,18 @@ const resultCount = document.querySelector("#result-count");
 const yearNote = document.querySelector("#year-note");
 const olderButton = document.querySelector("#older-year");
 const newerButton = document.querySelector("#newer-year");
+const racePlayButton = document.querySelector("#race-play");
+const raceYearLabel = document.querySelector("#race-year");
+const raceRange = document.querySelector("#race-range");
+const raceCountSelect = document.querySelector("#race-count");
+const raceStatus = document.querySelector("#race-status");
+const raceChart = document.querySelector("#race-chart");
 let rankingArchive;
+let raceYears = [];
+let raceIndex = 0;
+let raceTimer;
+const raceRows = new Map();
+const raceRowHeight = 52;
 
 function flagEmoji(code) {
   return String.fromCodePoint(...[...code].map((letter) => letter.charCodeAt(0) + 127397));
@@ -88,6 +99,19 @@ function getCountryDetails(code, englishName) {
 
 function countryNameMarkup(code, fallbackName) {
   return countryRuby[code]?.markup ?? fallbackName;
+}
+
+function getRankingRows(year) {
+  const yearData = rankingArchive.years[String(year)];
+  return yearData?.ranks.map((record, index) => {
+    const code = typeof record === "string" ? record : record.code;
+    const englishName = typeof record === "string" ? countryMetadata[code]?.en : record.english;
+    return {
+      code,
+      rank: typeof record === "string" ? index + 1 : record.rank,
+      ...getCountryDetails(code, englishName),
+    };
+  }) ?? [];
 }
 
 function yearStatus(year) {
@@ -116,15 +140,7 @@ function renderRanking() {
   const year = Number(yearSelect.value);
   const yearData = rankingArchive.years[String(year)];
   const query = searchInput.value.trim().toLocaleLowerCase("ja");
-  const rows = yearData?.ranks.map((record, index) => {
-    const code = typeof record === "string" ? record : record.code;
-    const englishName = typeof record === "string" ? countryMetadata[code]?.en : record.english;
-    return {
-      code,
-      rank: typeof record === "string" ? index + 1 : record.rank,
-      ...getCountryDetails(code, englishName),
-    };
-  }) ?? [];
+  const rows = getRankingRows(year);
   const filteredRows = rows.filter((entry) => (
     entry.name.toLocaleLowerCase("ja").includes(query)
     || entry.reading.toLocaleLowerCase("ja").includes(query)
@@ -230,6 +246,109 @@ function renderComparison() {
   compareMessage.dataset.hasRows = "true";
 }
 
+function createRaceRow() {
+  const row = document.createElement("div");
+  row.className = "race-row";
+  row.setAttribute("role", "listitem");
+
+  const rank = document.createElement("span");
+  rank.className = "race-rank";
+  const track = document.createElement("span");
+  track.className = "race-track";
+  const fill = document.createElement("span");
+  fill.className = "race-fill";
+  const label = document.createElement("span");
+  label.className = "race-label";
+  const flag = document.createElement("span");
+  flag.className = "race-flag";
+  flag.setAttribute("role", "img");
+  const name = document.createElement("span");
+  name.className = "race-country";
+  label.append(flag, name);
+  track.append(fill, label);
+  row.append(rank, track);
+  raceChart.append(row);
+  return { row, rank, fill, flag, name };
+}
+
+function renderRace() {
+  if (!raceYears.length) return;
+  const year = raceYears[raceIndex];
+  const entries = getRankingRows(year);
+  const limit = raceCountSelect.value === "all"
+    ? entries.length
+    : Math.min(entries.length, Number(raceCountSelect.value));
+  const visibleEntries = entries.slice(0, limit);
+  const visibleCodes = new Set(visibleEntries.map((entry) => entry.code));
+
+  raceYearLabel.textContent = `${year}年`;
+  raceRange.value = String(raceIndex);
+  raceRange.setAttribute("aria-valuetext", `${year}年`);
+  raceChart.setAttribute("aria-label", `${year}年の順位レース`);
+  raceChart.style.height = `${visibleEntries.length * raceRowHeight}px`;
+  raceStatus.textContent = `${year}年、${visibleEntries.length}か国を表示しています。`;
+
+  for (const [code, item] of raceRows) {
+    if (!visibleCodes.has(code)) item.row.hidden = true;
+  }
+
+  visibleEntries.forEach((entry, index) => {
+    const item = raceRows.get(entry.code) ?? createRaceRow();
+    raceRows.set(entry.code, item);
+    item.row.hidden = false;
+    item.row.style.transform = `translateY(${index * raceRowHeight}px)`;
+    item.rank.textContent = `#${entry.rank}`;
+    item.fill.style.width = `${((limit - index) / limit) * 100}%`;
+    item.fill.classList.toggle("top-one", entry.rank === 1);
+    item.fill.classList.toggle("top-two", entry.rank === 2);
+    item.fill.classList.toggle("top-three", entry.rank === 3);
+    item.flag.textContent = flagEmoji(entry.code);
+    item.flag.setAttribute("aria-label", `${entry.name}の国旗`);
+    item.name.innerHTML = countryNameMarkup(entry.code, entry.name);
+  });
+}
+
+function updateRacePlayButton() {
+  const playing = raceTimer !== undefined;
+  racePlayButton.textContent = playing ? "Ⅱ とめる" : "▶ 再生";
+  racePlayButton.setAttribute("aria-label", playing ? "ランキングレースを止める" : "ランキングレースを再生");
+  racePlayButton.setAttribute("aria-pressed", String(playing));
+}
+
+function stopRace() {
+  if (raceTimer !== undefined) {
+    window.clearInterval(raceTimer);
+    raceTimer = undefined;
+  }
+  updateRacePlayButton();
+}
+
+function advanceRace() {
+  if (raceIndex >= raceYears.length - 1) {
+    stopRace();
+    return;
+  }
+  raceIndex += 1;
+  renderRace();
+  if (raceIndex >= raceYears.length - 1) stopRace();
+}
+
+function startRace() {
+  if (raceYears.length < 2) return;
+  if (raceIndex >= raceYears.length - 1) {
+    raceIndex = 0;
+    renderRace();
+  }
+  raceTimer = window.setInterval(advanceRace, 1300);
+  updateRacePlayButton();
+}
+
+function setRaceYear(index) {
+  stopRace();
+  raceIndex = Math.max(0, Math.min(index, raceYears.length - 1));
+  renderRace();
+}
+
 function updateComparison() {
   document.querySelectorAll(".change-list").forEach((list) => list.remove());
   delete compareMessage.dataset.hasRows;
@@ -251,6 +370,7 @@ function moveYear(amount) {
 }
 
 function renderError(error) {
+  stopRace();
   console.error("ランキングデータを読み込めませんでした。", error);
   rankingContent.innerHTML = '<div class="empty-state"><strong>ランキングを読みこめませんでした</strong>ページをもう一度ひらいてください。</div>';
   document.querySelector("#summary-status").textContent = "エラー";
@@ -265,6 +385,13 @@ async function initialize() {
 
     populateYearSelect(yearSelect);
     populateYearSelect(compareSelect);
+    raceYears = Object.entries(rankingArchive.years)
+      .filter(([, data]) => data.status !== "no-update" && data.ranks?.length)
+      .map(([year]) => Number(year))
+      .sort((a, b) => a - b);
+    raceRange.max = String(Math.max(0, raceYears.length - 1));
+    racePlayButton.disabled = raceYears.length < 2;
+    raceRange.disabled = raceYears.length < 2;
     const requestedYear = Number(new URLSearchParams(window.location.search).get("year"));
     yearSelect.value = String(requestedYear >= 2005 && requestedYear <= 2026 ? requestedYear : 2026);
     compareSelect.value = "2025";
@@ -274,6 +401,15 @@ async function initialize() {
     searchInput.addEventListener("input", renderRanking);
     olderButton.addEventListener("click", () => moveYear(-1));
     newerButton.addEventListener("click", () => moveYear(1));
+    racePlayButton.addEventListener("click", () => {
+      if (raceTimer === undefined) startRace();
+      else stopRace();
+    });
+    raceRange.addEventListener("input", () => setRaceYear(Number(raceRange.value)));
+    raceCountSelect.addEventListener("change", renderRace);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopRace();
+    });
 
     let touchStart;
     rankingContent.addEventListener("touchstart", (event) => {
@@ -291,6 +427,7 @@ async function initialize() {
     }, { passive: true });
 
     renderRanking();
+    renderRace();
     updateComparison();
   } catch (error) {
     renderError(error);
