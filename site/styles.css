@@ -62,7 +62,7 @@ rt { color: #526785; font-size: .58em; font-weight: 500; letter-spacing: 0; }
 .mobile-break { display: none; }
 .intro-copy { margin: 14px 0 17px; color: #435570; font-size: 16px; line-height: 1.9; }
 .coverage-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #d5e4ff; border-radius: 999px; background: #edf4ff; color: #315da9; font-size: 12px; font-weight: 700; }
-.coverage-pill span { width: 7px; height: 7px; border-radius: 50%; background: #4285ef; }
+.coverage-pill > span:first-child { width: 7px; height: 7px; border-radius: 50%; background: #4285ef; }
 .kid-note { margin: 14px 0 0; padding: 12px 14px; border: 1px solid #f1dfb8; border-radius: 12px; background: #fff9eb; color: #644f2c; font-size: 13px; line-height: 1.8; }
 
 .card { border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 5px 18px rgba(20, 32, 51, .035); }
