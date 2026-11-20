@@ -1,0 +1,14 @@
+# 世界軍事力ランキング
+
+GitHub Pagesで公開する、子どもにも読みやすい日本語の年別ランキング・比較ページです。大きな国旗と順位、ふりがな、国名検索、年選択、前後の年へのボタン移動とスワイプ操作に対応しています。
+
+## データについて
+
+- 2026年はGlobal Firepowerの[最新ランキング](https://www.globalfirepower.com/countries-listing.php)から145か国を収録。順位と国旗は全件表示します。
+- 2005〜2025年は[過去年ランキング一覧](https://www.globalfirepower.com/global-ranks-previous.php)に載る上位25か国を収録。原典上で2008年・2009年は「No Update」、2013年は一覧がありません。表示・比較時にもその状態を区別し、データを補完していません。
+- 過去年アーカイブにはPowerIndexスコアが掲載されていないため、全年で順位のみを表示しています。GFPは順位算出に60以上の要素を使い、評価式が年度ごとに変わる場合があると説明しています。年次比較は参考として扱ってください。
+- アーカイブは上位25か国のみを掲載します。一覧にないことは、順位がない／圏外であることを意味しません。
+
+## GitHub Pages
+
+`main`ブランチへのpushで`.github/workflows/pages.yml`が`site/`をデプロイします。リポジトリの **Settings → Pages → Build and deployment → Source** で **GitHub Actions** を選択してください。

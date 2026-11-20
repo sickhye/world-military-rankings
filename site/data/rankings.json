@@ -1,0 +1,1483 @@
+{
+  "source": "https://www.globalfirepower.com/global-ranks-previous.php",
+  "retrieved": "2026-11-20",
+  "rankings": "2026 current ranking: all 145; 2005-2025 archive: top 25 only; historical PowerIndex scores are not listed.",
+  "years": {
+    "2026": {
+      "status": "full",
+      "ranks": [
+        {
+          "rank": 1,
+          "code": "US",
+          "english": "United States",
+          "score": 0.0741
+        },
+        {
+          "rank": 2,
+          "code": "RU",
+          "english": "Russia",
+          "score": 0.0791
+        },
+        {
+          "rank": 3,
+          "code": "CN",
+          "english": "China",
+          "score": 0.0919
+        },
+        {
+          "rank": 4,
+          "code": "IN",
+          "english": "India",
+          "score": 0.1346
+        },
+        {
+          "rank": 5,
+          "code": "KR",
+          "english": "South Korea",
+          "score": 0.1642
+        },
+        {
+          "rank": 6,
+          "code": "FR",
+          "english": "France",
+          "score": 0.1798
+        },
+        {
+          "rank": 7,
+          "code": "JP",
+          "english": "Japan",
+          "score": 0.1876
+        },
+        {
+          "rank": 8,
+          "code": "GB",
+          "english": "United Kingdom",
+          "score": 0.1881
+        },
+        {
+          "rank": 9,
+          "code": "TR",
+          "english": "Turkiye",
+          "score": 0.1975
+        },
+        {
+          "rank": 10,
+          "code": "IT",
+          "english": "Italy",
+          "score": 0.2211
+        },
+        {
+          "rank": 11,
+          "code": "BR",
+          "english": "Brazil",
+          "score": 0.2374
+        },
+        {
+          "rank": 12,
+          "code": "DE",
+          "english": "Germany",
+          "score": 0.2463
+        },
+        {
+          "rank": 13,
+          "code": "ID",
+          "english": "Indonesia",
+          "score": 0.2582
+        },
+        {
+          "rank": 14,
+          "code": "PK",
+          "english": "Pakistan",
+          "score": 0.2626
+        },
+        {
+          "rank": 15,
+          "code": "IL",
+          "english": "Israel",
+          "score": 0.2707
+        },
+        {
+          "rank": 16,
+          "code": "IR",
+          "english": "Iran",
+          "score": 0.3199
+        },
+        {
+          "rank": 17,
+          "code": "AU",
+          "english": "Australia",
+          "score": 0.3208
+        },
+        {
+          "rank": 18,
+          "code": "ES",
+          "english": "Spain",
+          "score": 0.3247
+        },
+        {
+          "rank": 19,
+          "code": "EG",
+          "english": "Egypt",
+          "score": 0.3651
+        },
+        {
+          "rank": 20,
+          "code": "UA",
+          "english": "Ukraine",
+          "score": 0.3691
+        },
+        {
+          "rank": 21,
+          "code": "PL",
+          "english": "Poland",
+          "score": 0.3891
+        },
+        {
+          "rank": 22,
+          "code": "TW",
+          "english": "Taiwan",
+          "score": 0.3927
+        },
+        {
+          "rank": 23,
+          "code": "VN",
+          "english": "Vietnam",
+          "score": 0.4066
+        },
+        {
+          "rank": 24,
+          "code": "TH",
+          "english": "Thailand",
+          "score": 0.4458
+        },
+        {
+          "rank": 25,
+          "code": "SA",
+          "english": "Saudi Arabia",
+          "score": 0.4473
+        },
+        {
+          "rank": 26,
+          "code": "SE",
+          "english": "Sweden",
+          "score": 0.4834
+        },
+        {
+          "rank": 27,
+          "code": "DZ",
+          "english": "Algeria",
+          "score": 0.4849
+        },
+        {
+          "rank": 28,
+          "code": "CA",
+          "english": "Canada",
+          "score": 0.5269
+        },
+        {
+          "rank": 29,
+          "code": "SG",
+          "english": "Singapore",
+          "score": 0.5272
+        },
+        {
+          "rank": 30,
+          "code": "GR",
+          "english": "Greece",
+          "score": 0.5484
+        },
+        {
+          "rank": 31,
+          "code": "KP",
+          "english": "North Korea",
+          "score": 0.5933
+        },
+        {
+          "rank": 32,
+          "code": "AR",
+          "english": "Argentina",
+          "score": 0.5983
+        },
+        {
+          "rank": 33,
+          "code": "NG",
+          "english": "Nigeria",
+          "score": 0.6097
+        },
+        {
+          "rank": 34,
+          "code": "NL",
+          "english": "Netherlands",
+          "score": 0.6142
+        },
+        {
+          "rank": 35,
+          "code": "MM",
+          "english": "Myanmar",
+          "score": 0.6265
+        },
+        {
+          "rank": 36,
+          "code": "MX",
+          "english": "Mexico",
+          "score": 0.6401
+        },
+        {
+          "rank": 37,
+          "code": "BD",
+          "english": "Bangladesh",
+          "score": 0.6517
+        },
+        {
+          "rank": 38,
+          "code": "PT",
+          "english": "Portugal",
+          "score": 0.6659
+        },
+        {
+          "rank": 39,
+          "code": "NO",
+          "english": "Norway",
+          "score": 0.6679
+        },
+        {
+          "rank": 40,
+          "code": "ZA",
+          "english": "South Africa",
+          "score": 0.6843
+        },
+        {
+          "rank": 41,
+          "code": "PH",
+          "english": "Philippines",
+          "score": 0.6993
+        },
+        {
+          "rank": 42,
+          "code": "MY",
+          "english": "Malaysia",
+          "score": 0.7379
+        },
+        {
+          "rank": 43,
+          "code": "CO",
+          "english": "Colombia",
+          "score": 0.7551
+        },
+        {
+          "rank": 44,
+          "code": "IQ",
+          "english": "Iraq",
+          "score": 0.8115
+        },
+        {
+          "rank": 45,
+          "code": "DK",
+          "english": "Denmark",
+          "score": 0.8198
+        },
+        {
+          "rank": 46,
+          "code": "CH",
+          "english": "Switzerland",
+          "score": 0.8396
+        },
+        {
+          "rank": 47,
+          "code": "ET",
+          "english": "Ethiopia",
+          "score": 0.8525
+        },
+        {
+          "rank": 48,
+          "code": "FI",
+          "english": "Finland",
+          "score": 0.8673
+        },
+        {
+          "rank": 49,
+          "code": "CL",
+          "english": "Chile",
+          "score": 0.8704
+        },
+        {
+          "rank": 50,
+          "code": "PE",
+          "english": "Peru",
+          "score": 0.8827
+        },
+        {
+          "rank": 51,
+          "code": "VE",
+          "english": "Venezuela",
+          "score": 0.9106
+        },
+        {
+          "rank": 52,
+          "code": "RO",
+          "english": "Romania",
+          "score": 0.9558
+        },
+        {
+          "rank": 53,
+          "code": "UZ",
+          "english": "Uzbekistan",
+          "score": 0.9908
+        },
+        {
+          "rank": 54,
+          "code": "AE",
+          "english": "United Arab Emirates",
+          "score": 1.0188
+        },
+        {
+          "rank": 55,
+          "code": "CZ",
+          "english": "Czechia",
+          "score": 1.0313
+        },
+        {
+          "rank": 56,
+          "code": "MA",
+          "english": "Morocco",
+          "score": 1.0368
+        },
+        {
+          "rank": 57,
+          "code": "HU",
+          "english": "Hungary",
+          "score": 1.0429
+        },
+        {
+          "rank": 58,
+          "code": "KZ",
+          "english": "Kazakhstan",
+          "score": 1.0433
+        },
+        {
+          "rank": 59,
+          "code": "AO",
+          "english": "Angola",
+          "score": 1.1045
+        },
+        {
+          "rank": 60,
+          "code": "AZ",
+          "english": "Azerbaijan",
+          "score": 1.1991
+        },
+        {
+          "rank": 61,
+          "code": "BE",
+          "english": "Belgium",
+          "score": 1.2201
+        },
+        {
+          "rank": 62,
+          "code": "BG",
+          "english": "Bulgaria",
+          "score": 1.2522
+        },
+        {
+          "rank": 63,
+          "code": "RS",
+          "english": "Serbia",
+          "score": 1.2938
+        },
+        {
+          "rank": 64,
+          "code": "CD",
+          "english": "Democratic Republic of the Congo",
+          "score": 1.3051
+        },
+        {
+          "rank": 65,
+          "code": "CU",
+          "english": "Cuba",
+          "score": 1.3345
+        },
+        {
+          "rank": 66,
+          "code": "SD",
+          "english": "Sudan",
+          "score": 1.3563
+        },
+        {
+          "rank": 67,
+          "code": "AT",
+          "english": "Austria",
+          "score": 1.3759
+        },
+        {
+          "rank": 68,
+          "code": "LK",
+          "english": "Sri Lanka",
+          "score": 1.3822
+        },
+        {
+          "rank": 69,
+          "code": "SK",
+          "english": "Slovakia",
+          "score": 1.3911
+        },
+        {
+          "rank": 70,
+          "code": "BY",
+          "english": "Belarus",
+          "score": 1.4072
+        },
+        {
+          "rank": 71,
+          "code": "QA",
+          "english": "Qatar",
+          "score": 1.4096
+        },
+        {
+          "rank": 72,
+          "code": "EC",
+          "english": "Ecuador",
+          "score": 1.4479
+        },
+        {
+          "rank": 73,
+          "code": "HR",
+          "english": "Croatia",
+          "score": 1.5432
+        },
+        {
+          "rank": 74,
+          "code": "JO",
+          "english": "Jordan",
+          "score": 1.5581
+        },
+        {
+          "rank": 75,
+          "code": "BH",
+          "english": "Bahrain",
+          "score": 1.6731
+        },
+        {
+          "rank": 76,
+          "code": "KW",
+          "english": "Kuwait",
+          "score": 1.7161
+        },
+        {
+          "rank": 77,
+          "code": "AL",
+          "english": "Albania",
+          "score": 1.7258
+        },
+        {
+          "rank": 78,
+          "code": "TM",
+          "english": "Turkmenistan",
+          "score": 1.7459
+        },
+        {
+          "rank": 79,
+          "code": "TN",
+          "english": "Tunisia",
+          "score": 1.7823
+        },
+        {
+          "rank": 80,
+          "code": "LY",
+          "english": "Libya",
+          "score": 1.7872
+        },
+        {
+          "rank": 81,
+          "code": "PY",
+          "english": "Paraguay",
+          "score": 1.7974
+        },
+        {
+          "rank": 82,
+          "code": "BO",
+          "english": "Bolivia",
+          "score": 1.8301
+        },
+        {
+          "rank": 83,
+          "code": "KH",
+          "english": "Cambodia",
+          "score": 1.8434
+        },
+        {
+          "rank": 84,
+          "code": "KE",
+          "english": "Kenya",
+          "score": 1.8588
+        },
+        {
+          "rank": 85,
+          "code": "TD",
+          "english": "Chad",
+          "score": 1.8594
+        },
+        {
+          "rank": 86,
+          "code": "OM",
+          "english": "Oman",
+          "score": 1.8823
+        },
+        {
+          "rank": 87,
+          "code": "SY",
+          "english": "Syria",
+          "score": 1.8861
+        },
+        {
+          "rank": 88,
+          "code": "LT",
+          "english": "Lithuania",
+          "score": 1.8949
+        },
+        {
+          "rank": 89,
+          "code": "TZ",
+          "english": "Tanzania",
+          "score": 1.9111
+        },
+        {
+          "rank": 90,
+          "code": "NZ",
+          "english": "New Zealand",
+          "score": 1.9258
+        },
+        {
+          "rank": 91,
+          "code": "SI",
+          "english": "Slovenia",
+          "score": 1.9404
+        },
+        {
+          "rank": 92,
+          "code": "MZ",
+          "english": "Mozambique",
+          "score": 1.9769
+        },
+        {
+          "rank": 93,
+          "code": "MN",
+          "english": "Mongolia",
+          "score": 1.9987
+        },
+        {
+          "rank": 94,
+          "code": "IE",
+          "english": "Ireland",
+          "score": 2.0661
+        },
+        {
+          "rank": 95,
+          "code": "GE",
+          "english": "Georgia",
+          "score": 2.0779
+        },
+        {
+          "rank": 96,
+          "code": "GT",
+          "english": "Guatemala",
+          "score": 2.1277
+        },
+        {
+          "rank": 97,
+          "code": "UY",
+          "english": "Uruguay",
+          "score": 2.1537
+        },
+        {
+          "rank": 98,
+          "code": "YE",
+          "english": "Yemen",
+          "score": 2.1617
+        },
+        {
+          "rank": 99,
+          "code": "CM",
+          "english": "Cameroon",
+          "score": 2.1689
+        },
+        {
+          "rank": 100,
+          "code": "TJ",
+          "english": "Tajikistan",
+          "score": 2.1749
+        },
+        {
+          "rank": 101,
+          "code": "AM",
+          "english": "Armenia",
+          "score": 2.2016
+        },
+        {
+          "rank": 102,
+          "code": "LV",
+          "english": "Latvia",
+          "score": 2.2316
+        },
+        {
+          "rank": 103,
+          "code": "HN",
+          "english": "Honduras",
+          "score": 2.2575
+        },
+        {
+          "rank": 104,
+          "code": "ML",
+          "english": "Mali",
+          "score": 2.2598
+        },
+        {
+          "rank": 105,
+          "code": "ZW",
+          "english": "Zimbabwe",
+          "score": 2.2801
+        },
+        {
+          "rank": 106,
+          "code": "EE",
+          "english": "Estonia",
+          "score": 2.3201
+        },
+        {
+          "rank": 107,
+          "code": "UG",
+          "english": "Uganda",
+          "score": 2.3252
+        },
+        {
+          "rank": 108,
+          "code": "CI",
+          "english": "Ivory Coast",
+          "score": 2.3884
+        },
+        {
+          "rank": 109,
+          "code": "KG",
+          "english": "Kyrgyzstan",
+          "score": 2.3969
+        },
+        {
+          "rank": 110,
+          "code": "LU",
+          "english": "Luxembourg",
+          "score": 2.4429
+        },
+        {
+          "rank": 111,
+          "code": "ZM",
+          "english": "Zambia",
+          "score": 2.4461
+        },
+        {
+          "rank": 112,
+          "code": "GH",
+          "english": "Ghana",
+          "score": 2.4566
+        },
+        {
+          "rank": 113,
+          "code": "SS",
+          "english": "South Sudan",
+          "score": 2.4645
+        },
+        {
+          "rank": 114,
+          "code": "MK",
+          "english": "North Macedonia",
+          "score": 2.4956
+        },
+        {
+          "rank": 115,
+          "code": "DO",
+          "english": "Dominican Republic",
+          "score": 2.5853
+        },
+        {
+          "rank": 116,
+          "code": "NI",
+          "english": "Nicaragua",
+          "score": 2.5894
+        },
+        {
+          "rank": 117,
+          "code": "CG",
+          "english": "Republic of the Congo",
+          "score": 2.6259
+        },
+        {
+          "rank": 118,
+          "code": "LB",
+          "english": "Lebanon",
+          "score": 2.6521
+        },
+        {
+          "rank": 119,
+          "code": "ER",
+          "english": "Eritrea",
+          "score": 2.6841
+        },
+        {
+          "rank": 120,
+          "code": "NE",
+          "english": "Niger",
+          "score": 2.6867
+        },
+        {
+          "rank": 121,
+          "code": "AF",
+          "english": "Afghanistan",
+          "score": 2.7342
+        },
+        {
+          "rank": 122,
+          "code": "NA",
+          "english": "Namibia",
+          "score": 2.7414
+        },
+        {
+          "rank": 123,
+          "code": "MR",
+          "english": "Mauritania",
+          "score": 2.7919
+        },
+        {
+          "rank": 124,
+          "code": "NP",
+          "english": "Nepal",
+          "score": 2.8037
+        },
+        {
+          "rank": 125,
+          "code": "LA",
+          "english": "Laos",
+          "score": 2.8672
+        },
+        {
+          "rank": 126,
+          "code": "SN",
+          "english": "Senegal",
+          "score": 2.8925
+        },
+        {
+          "rank": 127,
+          "code": "BF",
+          "english": "Burkina Faso",
+          "score": 2.9213
+        },
+        {
+          "rank": 128,
+          "code": "ME",
+          "english": "Montenegro",
+          "score": 2.9782
+        },
+        {
+          "rank": 129,
+          "code": "SV",
+          "english": "El Salvador",
+          "score": 2.9973
+        },
+        {
+          "rank": 130,
+          "code": "BW",
+          "english": "Botswana",
+          "score": 2.9993
+        },
+        {
+          "rank": 131,
+          "code": "MG",
+          "english": "Madagascar",
+          "score": 3.0381
+        },
+        {
+          "rank": 132,
+          "code": "GA",
+          "english": "Gabon",
+          "score": 3.0432
+        },
+        {
+          "rank": 133,
+          "code": "BA",
+          "english": "Bosnia and Herzegovina",
+          "score": 3.1291
+        },
+        {
+          "rank": 134,
+          "code": "IS",
+          "english": "Iceland",
+          "score": 3.4013
+        },
+        {
+          "rank": 135,
+          "code": "PA",
+          "english": "Panama",
+          "score": 3.5011
+        },
+        {
+          "rank": 136,
+          "code": "MD",
+          "english": "Moldova",
+          "score": 3.6225
+        },
+        {
+          "rank": 137,
+          "code": "SO",
+          "english": "Somalia",
+          "score": 3.7393
+        },
+        {
+          "rank": 138,
+          "code": "BJ",
+          "english": "Benin",
+          "score": 3.8963
+        },
+        {
+          "rank": 139,
+          "code": "XK",
+          "english": "Kosovo",
+          "score": 3.8041
+        },
+        {
+          "rank": 140,
+          "code": "SL",
+          "english": "Sierra Leone",
+          "score": 3.9201
+        },
+        {
+          "rank": 141,
+          "code": "LR",
+          "english": "Liberia",
+          "score": 3.9275
+        },
+        {
+          "rank": 142,
+          "code": "SR",
+          "english": "Suriname",
+          "score": 4.0538
+        },
+        {
+          "rank": 143,
+          "code": "CF",
+          "english": "Central African Republic",
+          "score": 4.2381
+        },
+        {
+          "rank": 144,
+          "code": "BZ",
+          "english": "Belize",
+          "score": 4.3602
+        },
+        {
+          "rank": 145,
+          "code": "BT",
+          "english": "Bhutan",
+          "score": 5.7991
+        }
+      ]
+    },
+    "2025": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "KR",
+        "GB",
+        "FR",
+        "JP",
+        "TR",
+        "IT",
+        "BR",
+        "PK",
+        "ID",
+        "DE",
+        "IL",
+        "IR",
+        "ES",
+        "AU",
+        "EG",
+        "UA",
+        "PL",
+        "TW",
+        "VN",
+        "SA",
+        "TH"
+      ]
+    },
+    "2024": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "KR",
+        "GB",
+        "JP",
+        "TR",
+        "PK",
+        "IT",
+        "FR",
+        "BR",
+        "ID",
+        "IR",
+        "EG",
+        "AU",
+        "IL",
+        "UA",
+        "DE",
+        "ES",
+        "PL",
+        "VN",
+        "SA",
+        "TW",
+        "TH"
+      ]
+    },
+    "2023": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "GB",
+        "KR",
+        "PK",
+        "JP",
+        "FR",
+        "IT",
+        "TR",
+        "BR",
+        "ID",
+        "EG",
+        "UA",
+        "AU",
+        "IR",
+        "IL",
+        "VN",
+        "PL",
+        "ES",
+        "SA",
+        "TW",
+        "TH",
+        "DE"
+      ]
+    },
+    "2022": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "JP",
+        "KR",
+        "FR",
+        "GB",
+        "PK",
+        "BR",
+        "IT",
+        "EG",
+        "TR",
+        "IR",
+        "ID",
+        "DE",
+        "AU",
+        "IL",
+        "ES",
+        "SA",
+        "TW",
+        "UA",
+        "CA",
+        "PL",
+        "SE"
+      ]
+    },
+    "2021": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "JP",
+        "KR",
+        "FR",
+        "GB",
+        "BR",
+        "PK",
+        "TR",
+        "IT",
+        "EG",
+        "IR",
+        "DE",
+        "ID",
+        "SA",
+        "ES",
+        "AU",
+        "IL",
+        "CA",
+        "TW",
+        "PL",
+        "VN",
+        "UA"
+      ]
+    },
+    "2020": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "JP",
+        "KR",
+        "FR",
+        "GB",
+        "EG",
+        "BR",
+        "TR",
+        "IT",
+        "DE",
+        "IR",
+        "PK",
+        "ID",
+        "SA",
+        "IL",
+        "AU",
+        "ES",
+        "PL",
+        "VN",
+        "TH",
+        "CA",
+        "KP"
+      ]
+    },
+    "2019": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "FR",
+        "JP",
+        "KR",
+        "GB",
+        "TR",
+        "DE",
+        "IT",
+        "EG",
+        "BR",
+        "IR",
+        "PK",
+        "ID",
+        "IL",
+        "KP",
+        "AU",
+        "ES",
+        "CA",
+        "TW",
+        "VN",
+        "PL",
+        "SA"
+      ]
+    },
+    "2018": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "FR",
+        "GB",
+        "KR",
+        "JP",
+        "TR",
+        "DE",
+        "IT",
+        "EG",
+        "IR",
+        "BR",
+        "ID",
+        "IL",
+        "PK",
+        "KP",
+        "ES",
+        "VN",
+        "AU",
+        "PL",
+        "DZ",
+        "TW",
+        "CA"
+      ]
+    },
+    "2017": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "FR",
+        "GB",
+        "JP",
+        "TR",
+        "DE",
+        "EG",
+        "IT",
+        "KR",
+        "PK",
+        "ID",
+        "IL",
+        "VN",
+        "BR",
+        "TW",
+        "PL",
+        "TH",
+        "IR",
+        "AU",
+        "KP",
+        "SA",
+        "DZ"
+      ]
+    },
+    "2016": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "FR",
+        "GB",
+        "JP",
+        "TR",
+        "DE",
+        "IT",
+        "KR",
+        "EG",
+        "PK",
+        "ID",
+        "BR",
+        "IL",
+        "VN",
+        "PL",
+        "TW",
+        "TH",
+        "IR",
+        "CA",
+        "AU",
+        "SA",
+        "KP"
+      ]
+    },
+    "2015": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "GB",
+        "FR",
+        "KR",
+        "DE",
+        "JP",
+        "TR",
+        "IL",
+        "ID",
+        "AU",
+        "CA",
+        "TW",
+        "IT",
+        "PK",
+        "EG",
+        "PL",
+        "TH",
+        "VN",
+        "BR",
+        "IR",
+        "SE",
+        "UA"
+      ]
+    },
+    "2014": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "GB",
+        "FR",
+        "DE",
+        "TR",
+        "KR",
+        "JP",
+        "IL",
+        "IT",
+        "EG",
+        "BR",
+        "PK",
+        "CA",
+        "TW",
+        "PL",
+        "ID",
+        "AU",
+        "UA",
+        "IR",
+        "VN",
+        "TH",
+        "SA"
+      ]
+    },
+    "2012": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "GB",
+        "FR",
+        "DE",
+        "KR",
+        "IT",
+        "BR",
+        "TR",
+        "PK",
+        "IL",
+        "EG",
+        "ID",
+        "IR",
+        "JP",
+        "TW",
+        "CA",
+        "TH",
+        "MX",
+        "UA",
+        "AU",
+        "PL",
+        "VN"
+      ]
+    },
+    "2011": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "GB",
+        "TR",
+        "KR",
+        "FR",
+        "JP",
+        "IL",
+        "BR",
+        "IR",
+        "DE",
+        "TW",
+        "PK",
+        "EG",
+        "IT",
+        "ID",
+        "TH",
+        "UA",
+        "PL",
+        "KP",
+        "PH",
+        "AU",
+        "CA"
+      ]
+    },
+    "2010": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "CN",
+        "RU",
+        "IN",
+        "GB",
+        "FR",
+        "DE",
+        "BR",
+        "JP",
+        "TR",
+        "IL",
+        "KR",
+        "IT",
+        "ID",
+        "PK",
+        "TW",
+        "EG",
+        "IR",
+        "MX",
+        "KP",
+        "SE",
+        "GR",
+        "CA",
+        "SA",
+        "UA"
+      ]
+    },
+    "2009": {
+      "status": "no-update",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "DE",
+        "FR",
+        "JP",
+        "TR",
+        "BR",
+        "GB",
+        "IT",
+        "KR",
+        "ID",
+        "MX",
+        "CA",
+        "IR",
+        "EG",
+        "KP",
+        "ES",
+        "PK",
+        "AU",
+        "SA",
+        "TH",
+        "AR",
+        "SE"
+      ]
+    },
+    "2008": {
+      "status": "no-update",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "DE",
+        "FR",
+        "JP",
+        "TR",
+        "BR",
+        "GB",
+        "IT",
+        "KR",
+        "ID",
+        "MX",
+        "CA",
+        "IR",
+        "EG",
+        "KP",
+        "ES",
+        "PK",
+        "AU",
+        "SA",
+        "TH",
+        "AR",
+        "SE"
+      ]
+    },
+    "2007": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "RU",
+        "CN",
+        "IN",
+        "DE",
+        "FR",
+        "JP",
+        "TR",
+        "BR",
+        "GB",
+        "IT",
+        "KR",
+        "ID",
+        "MX",
+        "CA",
+        "IR",
+        "EG",
+        "KP",
+        "ES",
+        "PK",
+        "AU",
+        "SA",
+        "TH",
+        "AR",
+        "SE"
+      ]
+    },
+    "2006": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "CN",
+        "RU",
+        "IN",
+        "PK",
+        "GB",
+        "IR",
+        "KP",
+        "DE",
+        "IL",
+        "FR",
+        "IT",
+        "GR",
+        "KR",
+        "AU",
+        "CA",
+        "ES",
+        "JP",
+        "SA",
+        "TR",
+        "SY",
+        "EG",
+        "TW",
+        "ID",
+        "BR"
+      ]
+    },
+    "2005": {
+      "status": "published",
+      "ranks": [
+        "US",
+        "CN",
+        "RU",
+        "PK",
+        "IN",
+        "GB",
+        "IR",
+        "KP",
+        "DE",
+        "IL",
+        "FR",
+        "IT",
+        "GR",
+        "KR",
+        "SA",
+        "ES",
+        "CA",
+        "JP",
+        "SY",
+        "TR",
+        "AU",
+        "EG",
+        "TW",
+        "ID",
+        "BR"
+      ]
+    }
+  },
+  "sourceCurrent": "https://www.globalfirepower.com/countries-listing.php"
+}

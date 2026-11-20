@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#101b2c">
+    <meta name="description" content="国旗とふりがなで、世界の国のランキングを年ごとに見られる子ども向けページです。">
+    <title>世界軍事力ランキング | 年別比較</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <a class="brand" href="./" aria-label="世界軍事力ランキング ホーム">
+        <span class="brand-mark" aria-hidden="true">◎</span>
+        <span>WORLD <strong>POWER</strong></span>
+      </a>
+      <span class="header-label">やさしいランキング</span>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow">GLOBAL FIREPOWER INDEX</p>
+        <h1><ruby>世界<rt>せかい</rt></ruby>の<br class="mobile-break"><ruby>軍事力<rt>ぐんじりょく</rt></ruby>ランキング</h1>
+        <p class="intro-copy">年（とし）をえらんで、国（くに）の順位（じゅんい）を見（み）てみよう。</p>
+        <div class="coverage-pill"><span aria-hidden="true"></span> 2005–2026年 · 年（とし）によって国（くに）の数（かず）がちがいます</div>
+        <p class="kid-note">この順位（じゅんい）は、国（くに）の大切（たいせつ）さや、戦争（せんそう）の勝（か）ち負（ま）けを決（き）めるものではありません。</p>
+      </section>
+
+      <section class="year-navigator card" aria-label="年をえらぶ">
+        <button id="older-year" class="year-step" type="button" aria-label="1年前へ">
+          <span aria-hidden="true">‹</span><small>前（まえ）の年（とし）</small>
+        </button>
+        <label class="year-picker">
+          <span class="visually-hidden">見（み）る年（とし）</span>
+          <select id="year-select" aria-label="見（み）る年（とし）"></select>
+        </label>
+        <button id="newer-year" class="year-step" type="button" aria-label="1年後へ">
+          <small>次（つぎ）の年（とし）</small><span aria-hidden="true">›</span>
+        </button>
+      </section>
+
+      <section class="controls card" aria-label="ランキングをさがす">
+        <label class="control">
+          <span>くらべる年（とし）</span>
+          <select id="compare-select" aria-label="くらべる年（とし）"></select>
+        </label>
+        <label class="search-control">
+          <span class="visually-hidden">国（くに）をさがす</span>
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="search-input" type="search" placeholder="国（くに）の名前でさがす" autocomplete="off">
+        </label>
+      </section>
+
+      <section class="summary-grid" aria-label="ランキング概要">
+        <article class="summary-card card">
+          <span class="summary-label">えらんだ年（とし）</span>
+          <strong id="summary-year">—</strong>
+          <span id="summary-status" class="summary-note">—</span>
+        </article>
+        <article class="summary-card card">
+          <span class="summary-label">この年（とし）の国（くに）</span>
+          <strong id="summary-coverage">—</strong>
+          <span class="summary-note">国旗（こっき）と順位（じゅんい）</span>
+        </article>
+      </section>
+
+      <section class="ranking-section" aria-labelledby="ranking-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">RANKING</p>
+                <h2 id="ranking-title"><ruby>国<rt>くに</rt></ruby>の<ruby>順位<rt>じゅんい</rt></ruby></h2>
+          </div>
+          <span id="result-count" class="result-count"></span>
+        </div>
+        <p id="year-note" class="year-note" hidden></p>
+        <div id="ranking-content" class="swipe-area" aria-live="polite"></div>
+        <p class="swipe-hint"><span aria-hidden="true">↔</span> 左右（さゆう）に動（うご）かして年（とし）をかえる</p>
+      </section>
+
+      <section class="compare-section card" aria-labelledby="compare-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YEAR COMPARISON</p>
+            <h2 id="compare-title">順位（じゅんい）をくらべる</h2>
+          </div>
+          <span class="compare-icon" aria-hidden="true">↗</span>
+        </div>
+        <p id="compare-message" class="compare-message"></p>
+        <p class="comparison-footnote">両方（りょうほう）の年（とし）にのっている国（くに）だけをくらべます。リストにない国（くに）も、順位（じゅんい）がないとはかぎりません。</p>
+      </section>
+
+      <details class="source-section card">
+        <summary>このランキングについて</summary>
+        <div class="source-content">
+          <p>2026年（ねん）は<a href="https://www.globalfirepower.com/countries-listing.php" target="_blank" rel="noopener noreferrer">GFPの最新（さいしん）ランキング</a>にある145か国（こく）を表示（ひょうじ）。2005〜2025年（ねん）は<a href="https://www.globalfirepower.com/global-ranks-previous.php" target="_blank" rel="noopener noreferrer">過去（かこ）のランキング</a>にある上位（じょうい）25か国（こく）を表示（ひょうじ）しています。</p>
+          <p>GFPは、兵士（へいし）の数（かず）、お金（かね）、道具（どうぐ）、地理（ちり）など、60以上（いじょう）の項目（こうもく）を使（つか）うと説明（せつめい）しています。年（とし）によって計算（けいさん）のしかたが変（か）わることがあります。過去（かこ）の一覧（いちらん）に点数（てんすう）はないため、ここでは順位（じゅんい）だけを大（おお）きく見（み）せています。</p>
+          <p>2008年（ねん）と2009年（ねん）はGFPに「更新（こうしん）なし」と書（か）かれています。2013年（ねん）の順位（じゅんい）は見（み）つかりませんでした。わからない順位（じゅんい）は作（つく）っていません。</p>
+          <p>昔（むかし）の一覧（いちらん）は上位（じょうい）25か国（こく）だけです。リストにない国（くに）が「順位（じゅんい）なし」という意味（いみ）ではありません。くわしくはGFPの<a href="https://www.globalfirepower.com/disclaimer.php" target="_blank" rel="noopener noreferrer">説明（せつめい）</a>を読（よ）んでください。</p>
+          <p>このページはGFPの公式（こうしき）ページではありません。データを見るときは大人（おとな）といっしょに出典（しゅってん）も確認（かくにん）してください。</p>
+        </div>
+      </details>
+    </main>
+
+    <footer class="app-footer">
+      <span>ランキングは参考（さんこう）として見（み）てください。</span>
+      <a href="https://www.globalfirepower.com/" target="_blank" rel="noopener noreferrer">Global Firepower ↗</a>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
