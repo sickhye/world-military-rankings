@@ -1,0 +1,59 @@
+{
+  "defaultDataset": "military",
+  "datasets": {
+    "military": {
+      "label": "軍事力",
+      "title": "軍事力",
+      "file": "rankings.json",
+      "valueFormat": "none",
+      "sourceLabel": "Global Firepower",
+      "sourceUrl": "https://www.globalfirepower.com/global-ranks-previous.php",
+      "description": "Global Firepower（GFP）が公表する世界の軍事力ランキングです。",
+      "limitation": "2026年は145か国、過去年は公開アーカイブの上位25か国です。2008・2009年は「更新なし」、2013年は一覧がありません。過去年の点数は公開されず、評価方法も年によって変わる場合があります。",
+      "noUpdateText": "GFPはこの年を「更新なし」と記載しています。順位は新しく調べたものではありません。",
+      "raceNote": "棒の長さは順位を見やすくした表示で、GFPの公式点数ではありません。公開された年だけを使い、順位を補間していません。"
+    },
+    "population": {
+      "label": "人口",
+      "title": "人口",
+      "file": "population.json",
+      "indicator": "SP.POP.TOTL",
+      "startYear": 2005,
+      "endYear": 2025,
+      "valueFormat": "people",
+      "sourceLabel": "World Bank · Population, total",
+      "sourceUrl": "https://data.worldbank.org/indicator/SP.POP.TOTL",
+      "description": "世界銀行の「総人口」データを使い、人口の多い順に並べています。",
+      "limitation": "国・地域ごとに公表状況が異なります。値がない国・地域はその年の順位に含めていません。",
+      "raceNote": "棒の長さは各年の人口に比例しています。表示値は人です。"
+    },
+    "gdp": {
+      "label": "GDP（名目）",
+      "title": "GDP（名目）",
+      "file": "gdp.json",
+      "indicator": "NY.GDP.MKTP.CD",
+      "startYear": 2005,
+      "endYear": 2025,
+      "valueFormat": "usd",
+      "sourceLabel": "World Bank · GDP (current US$)",
+      "sourceUrl": "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD",
+      "description": "世界銀行の「名目GDP（当年の米ドル）」を使い、金額の大きい順に並べています。",
+      "limitation": "物価調整や購買力平価による比較ではありません。値がない国・地域はその年の順位に含めていません。",
+      "raceNote": "棒の長さは各年の名目GDPに比例しています。金額は当年の米ドルで、物価調整や購買力平価ではありません。"
+    },
+    "land-area": {
+      "label": "国土面積",
+      "title": "国土面積",
+      "file": "land-area.json",
+      "indicator": "AG.LND.TOTL.K2",
+      "startYear": 2005,
+      "endYear": 2025,
+      "valueFormat": "area",
+      "sourceLabel": "World Bank · Land area",
+      "sourceUrl": "https://data.worldbank.org/indicator/AG.LND.TOTL.K2",
+      "description": "世界銀行の「陸地面積」を使い、面積の大きい順に並べています。",
+      "limitation": "内水面を除いた陸地面積（平方キロメートル）です。最新の公表年はほかの指標より古い場合があります。値がない国・地域は順位に含めていません。",
+      "raceNote": "棒の長さは陸地面積に比例しています。表示値は平方キロメートルです。"
+    }
+  }
+}

@@ -66,6 +66,9 @@ const japaneseRegionNames = new Intl.DisplayNames(["ja"], { type: "region" });
 const yearSelect = document.querySelector("#year-select");
 const compareSelect = document.querySelector("#compare-select");
 const searchInput = document.querySelector("#search-input");
+const datasetSelect = document.querySelector("#dataset-select");
+const datasetTitle = document.querySelector("#dataset-title");
+const datasetCoverage = document.querySelector("#dataset-coverage");
 const rankingContent = document.querySelector("#ranking-content");
 const compareMessage = document.querySelector("#compare-message");
 const viewTabs = Array.from(document.querySelectorAll(".view-tab"));
@@ -79,7 +82,15 @@ const raceRange = document.querySelector("#race-range");
 const raceCountSelect = document.querySelector("#race-count");
 const raceStatus = document.querySelector("#race-status");
 const raceChart = document.querySelector("#race-chart");
+const raceNote = document.querySelector("#race-note");
+const sourceDescription = document.querySelector("#source-description");
+const sourceLimitation = document.querySelector("#source-limitation");
+const sourceLink = document.querySelector("#source-link");
+let datasetCatalog;
+let datasetArchives;
+let activeDataset;
 let rankingArchive;
+let defaultDatasetId;
 let raceYears = [];
 let raceIndex = 0;
 let raceTimer;
@@ -102,17 +113,48 @@ function countryNameMarkup(code, fallbackName) {
   return countryRuby[code]?.markup ?? fallbackName;
 }
 
+function formatMetricValue(value) {
+  if (value === null || value === undefined) return "";
+  if (activeDataset.valueFormat === "people") {
+    return `${new Intl.NumberFormat("ja-JP", { notation: "compact", maximumFractionDigits: 1 }).format(value)}人`;
+  }
+  if (activeDataset.valueFormat === "usd") {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      notation: "compact",
+      maximumFractionDigits: 1,
+    }).format(value);
+  }
+  if (activeDataset.valueFormat === "area") {
+    return `${new Intl.NumberFormat("ja-JP", { maximumFractionDigits: 0 }).format(value)} km²`;
+  }
+  return "";
+}
+
 function getRankingRows(year) {
   const yearData = rankingArchive.years[String(year)];
   return yearData?.ranks.map((record, index) => {
     const code = typeof record === "string" ? record : record.code;
     const englishName = typeof record === "string" ? countryMetadata[code]?.en : record.english;
+    const value = typeof record === "string" ? null : record.value ?? null;
     return {
       code,
       rank: typeof record === "string" ? index + 1 : record.rank,
+      value,
+      valueText: formatMetricValue(value),
       ...getCountryDetails(code, englishName),
     };
   }) ?? [];
+}
+
+function getDatasetYears() {
+  return Object.keys(rankingArchive.years).map(Number).sort((a, b) => a - b);
+}
+
+function getDatasetYearBounds() {
+  const years = getDatasetYears();
+  return { first: years[0] ?? 2005, last: years.at(-1) ?? 2026 };
 }
 
 function yearStatus(year) {
@@ -124,11 +166,12 @@ function yearOptionLabel(year) {
   if (status === "no-update") return `${year}年（更新なし）`;
   if (status === "missing") return `${year}年（データなし）`;
   const count = rankingArchive.years[String(year)].ranks.length;
-  return `${year}年（${count}か国）`;
+  return `${year}年（${count}か国・地域）`;
 }
 
 function populateYearSelect(select) {
-  const years = Array.from({ length: 22 }, (_, index) => 2026 - index);
+  const { first, last } = getDatasetYearBounds();
+  const years = Array.from({ length: last - first + 1 }, (_, index) => last - index);
   select.replaceChildren(...years.map((year) => {
     const option = document.createElement("option");
     option.value = String(year);
@@ -151,23 +194,24 @@ function renderRanking() {
 
   document.querySelector("#summary-year").textContent = `${year}年`;
   document.querySelector("#summary-status").textContent = yearData
-    ? yearData.status === "no-update" ? "GFPは「こうしんなし」と記載" : "GFPの順位（じゅんい）"
-    : "GFPの一覧（いちらん）に見つからず";
+    ? yearData.status === "no-update" ? activeDataset.noUpdateText : `${activeDataset.label}の順位（じゅんい）`
+    : `${activeDataset.label}のデータなし`;
   document.querySelector("#summary-coverage").textContent = rows.length
-    ? `${rows.length}か国`
+    ? `${rows.length}か国・地域`
     : "見つからず";
-  resultCount.textContent = rows.length ? `${filteredRows.length} / ${rows.length}か国` : "";
-  olderButton.disabled = year <= 2005;
-  newerButton.disabled = year >= 2026;
+  resultCount.textContent = rows.length ? `${filteredRows.length} / ${rows.length}か国・地域` : "";
+  const { first, last } = getDatasetYearBounds();
+  olderButton.disabled = year <= first;
+  newerButton.disabled = year >= last;
   yearNote.hidden = true;
 
   if (!yearData) {
-    rankingContent.innerHTML = '<div class="empty-state"><strong>この年（とし）の順位（じゅんい）は見（み）つかりません</strong>もとのページに一覧（いちらん）がないため、順位（じゅんい）は作（つく）っていません。</div>';
+    rankingContent.innerHTML = '<div class="empty-state"><strong>この年（とし）のデータは見（み）つかりません</strong>公開（こうかい）された値（あたい）がないため、順位（じゅんい）は作（つく）っていません。</div>';
     return;
   }
 
   if (yearData.status === "no-update") {
-    yearNote.textContent = `${year}年（ねん）はGFPに「更新（こうしん）なし」と書（か）かれています。下（した）の順位（じゅんい）はその年（とし）に新（あたら）しく調（しら）べたものではありません。`;
+    yearNote.textContent = activeDataset.noUpdateText;
     yearNote.hidden = false;
   }
 
@@ -191,6 +235,7 @@ function renderRanking() {
         <span class="flag" role="img" aria-label="${entry.name}の国旗">${flagEmoji(entry.code)}</span>
         <span><span class="country-name">${countryNameMarkup(entry.code, entry.name)}</span><span class="country-en">${entry.en}</span></span>
       </span>
+      <span class="metric-value" ${entry.valueText ? "" : "hidden"}>${entry.valueText}</span>
     `;
     list.append(row);
   }
@@ -217,9 +262,13 @@ function renderComparison() {
   }
 
   const countryCode = (record) => typeof record === "string" ? record : record.code;
-  const comparisonRanks = new Map(compareData.ranks.map((record, index) => [countryCode(record), index + 1]));
+  const recordRank = (record, index) => typeof record === "string" ? index + 1 : record.rank;
+  const comparisonRanks = new Map(compareData.ranks.map((record, index) => [
+    countryCode(record),
+    recordRank(record, index),
+  ]));
   const shared = selectedData.ranks
-    .map((record, index) => ({ code: countryCode(record), rank: index + 1 }))
+    .map((record, index) => ({ code: countryCode(record), rank: recordRank(record, index) }))
     .filter(({ code }) => comparisonRanks.has(code));
 
   if (!shared.length) {
@@ -265,11 +314,13 @@ function createRaceRow() {
   flag.setAttribute("role", "img");
   const name = document.createElement("span");
   name.className = "race-country";
+  const value = document.createElement("span");
+  value.className = "race-value";
   label.append(flag, name);
   track.append(fill, label);
-  row.append(rank, track);
+  row.append(rank, track, value);
   raceChart.append(row);
-  return { row, rank, fill, flag, name };
+  return { row, rank, fill, flag, name, value };
 }
 
 function renderRace() {
@@ -281,13 +332,15 @@ function renderRace() {
     : Math.min(entries.length, Number(raceCountSelect.value));
   const visibleEntries = entries.slice(0, limit);
   const visibleCodes = new Set(visibleEntries.map((entry) => entry.code));
+  const maxValue = Math.max(0, ...visibleEntries.map((entry) => Number(entry.value) || 0));
 
   raceYearLabel.textContent = `${year}年`;
   raceRange.value = String(raceIndex);
   raceRange.setAttribute("aria-valuetext", `${year}年`);
   raceChart.setAttribute("aria-label", `${year}年の順位レース`);
   raceChart.style.height = `${visibleEntries.length * raceRowHeight}px`;
-  raceStatus.textContent = `${year}年、${visibleEntries.length}か国を表示しています。`;
+  raceStatus.textContent = `${year}年、${visibleEntries.length}か国・地域を表示しています。`;
+  raceNote.textContent = activeDataset.raceNote;
 
   for (const [code, item] of raceRows) {
     if (!visibleCodes.has(code)) item.row.hidden = true;
@@ -299,13 +352,18 @@ function renderRace() {
     item.row.hidden = false;
     item.row.style.transform = `translateY(${index * raceRowHeight}px)`;
     item.rank.textContent = `#${entry.rank}`;
-    item.fill.style.width = `${((limit - index) / limit) * 100}%`;
+    const relativeValue = maxValue > 0
+      ? Math.max(1.5, (Number(entry.value) / maxValue) * 100)
+      : ((limit - index) / limit) * 100;
+    item.fill.style.width = `${relativeValue}%`;
     item.fill.classList.toggle("top-one", entry.rank === 1);
     item.fill.classList.toggle("top-two", entry.rank === 2);
     item.fill.classList.toggle("top-three", entry.rank === 3);
     item.flag.textContent = flagEmoji(entry.code);
     item.flag.setAttribute("aria-label", `${entry.name}の国旗`);
     item.name.innerHTML = countryNameMarkup(entry.code, entry.name);
+    item.value.textContent = entry.valueText;
+    item.value.hidden = !entry.valueText;
   });
 }
 
@@ -350,6 +408,57 @@ function setRaceYear(index) {
   renderRace();
 }
 
+function selectDataset(datasetId, updateUrl = false) {
+  const config = datasetCatalog[datasetId];
+  const archive = datasetArchives[datasetId];
+  if (!config || !archive) throw new Error(`Unknown ranking dataset: ${datasetId}`);
+
+  stopRace();
+  activeDataset = config;
+  rankingArchive = archive;
+  datasetSelect.value = datasetId;
+  datasetTitle.textContent = config.title;
+  document.title = `世界${config.title}ランキング | 年別比較`;
+
+  const years = getDatasetYears();
+  const { first, last } = getDatasetYearBounds();
+  const publishedYears = years.filter((year) => (
+    yearStatus(year) !== "no-update" && rankingArchive.years[String(year)].ranks?.length
+  ));
+  if (!publishedYears.length) throw new Error(`Ranking dataset has no data: ${datasetId}`);
+
+  datasetCoverage.textContent = first === last
+    ? `${config.label} · ${last}年のデータ`
+    : `${config.label} · ${first}〜${last}年のデータ`;
+  sourceDescription.textContent = config.description;
+  sourceLimitation.textContent = config.limitation;
+  sourceLink.href = config.sourceUrl;
+  sourceLink.textContent = `データ出典：${config.sourceLabel}`;
+
+  populateYearSelect(yearSelect);
+  populateYearSelect(compareSelect);
+  const latestYear = publishedYears.at(-1);
+  const previousYear = [...publishedYears].reverse().find((year) => year < latestYear) ?? latestYear;
+  yearSelect.value = String(latestYear);
+  compareSelect.value = String(previousYear);
+  searchInput.value = "";
+  if (updateUrl) {
+    const url = new URL(window.location.href);
+    if (datasetId === defaultDatasetId) url.searchParams.delete("dataset");
+    else url.searchParams.set("dataset", datasetId);
+    url.searchParams.set("year", String(latestYear));
+    window.history.replaceState(null, "", url);
+  }
+
+  raceYears = publishedYears;
+  raceIndex = 0;
+  raceRange.max = String(Math.max(0, raceYears.length - 1));
+  racePlayButton.disabled = raceYears.length < 2;
+  raceRange.disabled = raceYears.length < 2;
+  renderRanking();
+  renderRace();
+  updateComparison();
+}
 function selectViewTab(selectedTab, moveFocus = false) {
   for (const tab of viewTabs) {
     const selected = tab === selectedTab;
@@ -378,7 +487,8 @@ function selectYear(year) {
 
 function moveYear(amount) {
   const year = Number(yearSelect.value) + amount;
-  if (year >= 2005 && year <= 2026) selectYear(year);
+  const { first, last } = getDatasetYearBounds();
+  if (year >= first && year <= last) selectYear(year);
 }
 
 function renderError(error) {
@@ -391,25 +501,32 @@ function renderError(error) {
 
 async function initialize() {
   try {
-    const response = await fetch("./data/rankings.json");
-    if (!response.ok) throw new Error(`ランキングデータの取得に失敗しました: HTTP ${response.status}`);
-    rankingArchive = await response.json();
+    const catalogResponse = await fetch("./data/datasets.json");
+    if (!catalogResponse.ok) throw new Error(`ランキング一覧の取得に失敗しました: HTTP ${catalogResponse.status}`);
+    const catalog = await catalogResponse.json();
+    datasetCatalog = catalog.datasets;
+    defaultDatasetId = catalog.defaultDataset;
+    const loadedDatasets = await Promise.all(Object.entries(datasetCatalog).map(async ([id, config]) => {
+      const response = await fetch(`./data/${config.file}`);
+      if (!response.ok) throw new Error(`${config.label}データの取得に失敗しました: HTTP ${response.status}`);
+      return [id, await response.json()];
+    }));
+    datasetArchives = Object.fromEntries(loadedDatasets);
 
-    populateYearSelect(yearSelect);
-    populateYearSelect(compareSelect);
-    raceYears = Object.entries(rankingArchive.years)
-      .filter(([, data]) => data.status !== "no-update" && data.ranks?.length)
-      .map(([year]) => Number(year))
-      .sort((a, b) => a - b);
-    raceRange.max = String(Math.max(0, raceYears.length - 1));
-    racePlayButton.disabled = raceYears.length < 2;
-    raceRange.disabled = raceYears.length < 2;
-    const requestedYear = Number(new URLSearchParams(window.location.search).get("year"));
-    yearSelect.value = String(requestedYear >= 2005 && requestedYear <= 2026 ? requestedYear : 2026);
-    compareSelect.value = "2025";
+    const options = Object.entries(datasetCatalog).map(([id, config]) => {
+      const option = document.createElement("option");
+      option.value = id;
+      option.textContent = config.label;
+      return option;
+    });
+    datasetSelect.replaceChildren(...options);
+    if (!datasetCatalog[catalog.defaultDataset]) {
+      throw new Error(`Default ranking dataset is missing: ${catalog.defaultDataset}`);
+    }
 
     yearSelect.addEventListener("change", () => selectYear(Number(yearSelect.value)));
     compareSelect.addEventListener("change", updateComparison);
+    datasetSelect.addEventListener("change", () => selectDataset(datasetSelect.value, true));
     searchInput.addEventListener("input", renderRanking);
     olderButton.addEventListener("click", () => moveYear(-1));
     newerButton.addEventListener("click", () => moveYear(1));
@@ -451,9 +568,23 @@ async function initialize() {
       moveYear(deltaX > 0 ? -1 : 1);
     }, { passive: true });
 
-    renderRanking();
-    renderRace();
-    updateComparison();
+    const params = new URLSearchParams(window.location.search);
+    const requestedDataset = params.get("dataset");
+    selectDataset(datasetCatalog[requestedDataset] ? requestedDataset : defaultDatasetId);
+    const requestedYear = Number(params.get("year"));
+    const { first, last } = getDatasetYearBounds();
+    if (requestedYear >= first && requestedYear <= last) {
+      yearSelect.value = String(requestedYear);
+      const publishedYears = getDatasetYears().filter((year) => (
+        yearStatus(year) !== "no-update" && rankingArchive.years[String(year)].ranks?.length
+      ));
+      const comparisonYear = [...publishedYears].reverse().find((year) => year < requestedYear)
+        ?? publishedYears.find((year) => year > requestedYear)
+        ?? requestedYear;
+      compareSelect.value = String(comparisonYear);
+      renderRanking();
+      updateComparison();
+    }
   } catch (error) {
     renderError(error);
   }
