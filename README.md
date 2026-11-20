@@ -1,15 +1,26 @@
-# 世界軍事力ランキング
+# 世界ランキング
 
-GitHub Pagesで公開する、子どもにも読みやすい日本語の年別ランキング・比較ページです。ランキング表示とレース表示をタブで切り替えられ、初期画面はランキング表示です。大きな国旗と順位、ふりがな、国名検索、年選択、前後の年へのボタン移動とスワイプ操作に対応しています。公開データのある年を再生・スクラブできるランキングレースもあり、上位10か国・25か国・全掲載国を切り替えられます。
+GitHub Pagesで公開する、年ごとの世界ランキングサイトです。軍事力・人口・名目GDP・国土面積を切り替えて、国旗付きランキングや年ごとの比較、ランキングレースを表示します。日本語UI、ふりがな、国名検索、年選択、前後の年へのボタン移動とスワイプ操作に対応し、スマートフォンでも使いやすいレイアウトです。初期表示はランキングタブです。
 
-## データについて
+## データと範囲
 
-- 2026年はGlobal Firepowerの[最新ランキング](https://www.globalfirepower.com/countries-listing.php)から145か国を収録。順位と国旗は全件表示します。
-- 2005〜2025年は[過去年ランキング一覧](https://www.globalfirepower.com/global-ranks-previous.php)に載る上位25か国を収録。原典上で2008年・2009年は「No Update」、2013年は一覧がありません。表示・比較時にもその状態を区別し、データを補完していません。
-- 過去年アーカイブにはPowerIndexスコアが掲載されていないため、全年で順位のみを表示しています。GFPは順位算出に60以上の要素を使い、評価式が年度ごとに変わる場合があると説明しています。年次比較は参考として扱ってください。
-- レースの棒の長さは順位を見やすくするための表示で、GFPのPowerIndexスコアではありません。更新なし・データなしの年は飛ばし、順位を補間していません。
-- アーカイブは上位25か国のみを掲載します。一覧にないことは、順位がない／圏外であることを意味しません。
+- **軍事力** — Global Firepower（GFP）の[最新ランキング](https://www.globalfirepower.com/countries-listing.php)と[過去年一覧](https://www.globalfirepower.com/global-ranks-previous.php)。2026年は145か国、過去年は公開アーカイブの上位25か国です。2008・2009年は「更新なし」、2013年は一覧がありません。過去年のPowerIndexスコアは公開されていないため順位のみを使い、レースの棒は順位を示す表示で公式スコアではありません。
+- **人口** — World Bankの[Population, total](https://data.worldbank.org/indicator/SP.POP.TOTL)、2005〜2025年。
+- **GDP（名目）** — World Bankの[GDP (current US$)](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD)、2005〜2025年。米ドル建ての当年価格で、物価調整や購買力平価による比較ではありません。
+- **国土面積** — World Bankの[Land area](https://data.worldbank.org/indicator/AG.LND.TOTL.K2)、2005〜2024年。内水面を除いた陸地面積（平方キロメートル）です。
+
+World Bankのデータは国・地域や年により欠けている場合があり、値がある対象だけを順位に含めます。軍事力アーカイブも上位25か国のみです。一覧にないことは、順位がない、または圏外であることを意味しません。出典と指標ごとの制限はサイト内にも表示しています。
+
+## データの更新・追加
+
+World Bankのデータを更新するには、リポジトリのルートで実行します。
+
+```sh
+python3 scripts/build_world_bank_rankings.py
+```
+
+取得元のAPIエンドポイント、期間、表示名、単位、説明は `site/data/datasets.json` にあります。新しいWorld Bank指標を追加する場合は、そこに指標コードと設定を登録し、同じ形式の年別JSONを生成します。軍事力データはGFPの公開資料を確認して `site/data/rankings.json` を更新してください。
 
 ## GitHub Pages
 
-`main`ブランチへのpushで`.github/workflows/pages.yml`が`site/`をデプロイします。リポジトリの **Settings → Pages → Build and deployment → Source** で **GitHub Actions** を選択してください。
+`main`ブランチへのpushで `.github/workflows/pages.yml` が `site/` をデプロイします。リポジトリの **Settings → Pages → Build and deployment → Source** で **GitHub Actions** を選択してください。

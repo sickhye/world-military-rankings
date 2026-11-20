@@ -4,26 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#101b2c">
-    <meta name="description" content="国旗とふりがなで、世界の国のランキングを年ごとに見られる子ども向けページです。">
-    <title>世界軍事力ランキング | 年別比較</title>
+    <meta name="description" content="国旗とふりがなで、世界のさまざまなランキングを年ごとに見られる子ども向けページです。">
+    <title>世界ランキング | 年別比較</title>
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
     <header class="app-header">
-      <a class="brand" href="./" aria-label="世界軍事力ランキング ホーム">
+      <a class="brand" href="./" aria-label="世界ランキング ホーム">
         <span class="brand-mark" aria-hidden="true">◎</span>
-        <span>WORLD <strong>POWER</strong></span>
+        <span>WORLD <strong>RANKINGS</strong></span>
       </a>
       <span class="header-label">やさしいランキング</span>
     </header>
 
     <main>
       <section class="intro">
-        <p class="eyebrow">GLOBAL FIREPOWER INDEX</p>
-        <h1><ruby>世界<rt>せかい</rt></ruby>の<br class="mobile-break"><ruby>軍事力<rt>ぐんじりょく</rt></ruby>ランキング</h1>
-        <p class="intro-copy">年（とし）をえらんで、国（くに）の順位（じゅんい）を見（み）てみよう。</p>
-        <div class="coverage-pill"><span aria-hidden="true"></span> 2005–2026年 · 年（とし）によって国（くに）の数（かず）がちがいます</div>
-        <p class="kid-note">この順位（じゅんい）は、国（くに）の大切（たいせつ）さや、戦争（せんそう）の勝（か）ち負（ま）けを決（き）めるものではありません。</p>
+        <p class="eyebrow">GLOBAL RANKINGS</p>
+        <h1><ruby>世界<rt>せかい</rt></ruby>の<span id="dataset-title">軍事力</span>ランキング</h1>
+        <p class="intro-copy">ランキングの種類（しゅるい）と年（とし）をえらんで、世界（せかい）のデータを見（み）てみよう。</p>
+        <div class="coverage-pill"><span aria-hidden="true"></span><span id="dataset-coverage">データを読み込んでいます</span></div>
+        <p class="kid-note">ランキングは国（くに）の価値（かち）や、人（ひと）の大切（たいせつ）さを決（き）めるものではありません。</p>
+      </section>
+
+      <section class="dataset-picker card" aria-label="ランキングの種類">
+        <label for="dataset-select">ランキングの種類（しゅるい）</label>
+        <select id="dataset-select" aria-label="ランキングの種類"></select>
       </section>
 
       <div class="view-tabs" role="tablist" aria-label="表示するページ">
@@ -64,7 +69,7 @@
           <span id="summary-status" class="summary-note">—</span>
         </article>
         <article class="summary-card card">
-          <span class="summary-label">この年（とし）の国（くに）</span>
+          <span class="summary-label">この年（とし）の国（くに）・地域（ちいき）</span>
           <strong id="summary-coverage">—</strong>
           <span class="summary-note">国旗（こっき）と順位（じゅんい）</span>
         </article>
@@ -125,25 +130,24 @@
           <input id="race-range" class="race-range" type="range" min="0" max="0" value="0" step="1" aria-label="レースの年を選ぶ">
           <p id="race-status" class="visually-hidden" aria-live="polite"></p>
           <div id="race-chart" class="race-chart" role="list" aria-label="順位レース"></div>
-          <p class="race-note">棒（ぼう）の長（なが）さは順位（じゅんい）を見（み）やすくした表示（ひょうじ）で、GFPの点数（てんすう）ではありません。公開（こうかい）された年（とし）だけを使（つか）い、更新（こうしん）なしやデータがない年（とし）の順位（じゅんい）は作（つく）っていません。</p>
+          <p id="race-note" class="race-note"></p>
         </section>
       </section>
 
       <details class="source-section card">
-        <summary>このランキングについて</summary>
+        <summary>データの出典（しゅってん）と説明（せつめい）</summary>
         <div class="source-content">
-          <p>2026年（ねん）は<a href="https://www.globalfirepower.com/countries-listing.php" target="_blank" rel="noopener noreferrer">GFPの最新（さいしん）ランキング</a>にある145か国（こく）を表示（ひょうじ）。2005〜2025年（ねん）は<a href="https://www.globalfirepower.com/global-ranks-previous.php" target="_blank" rel="noopener noreferrer">過去（かこ）のランキング</a>にある上位（じょうい）25か国（こく）を表示（ひょうじ）しています。</p>
-          <p>GFPは、兵士（へいし）の数（かず）、お金（かね）、道具（どうぐ）、地理（ちり）など、60以上（いじょう）の項目（こうもく）を使（つか）うと説明（せつめい）しています。年（とし）によって計算（けいさん）のしかたが変（か）わることがあります。過去（かこ）の一覧（いちらん）に点数（てんすう）はないため、ここでは順位（じゅんい）だけを大（おお）きく見（み）せています。</p>
-          <p>2008年（ねん）と2009年（ねん）はGFPに「更新（こうしん）なし」と書（か）かれています。2013年（ねん）の順位（じゅんい）は見（み）つかりませんでした。わからない順位（じゅんい）は作（つく）っていません。</p>
-          <p>昔（むかし）の一覧（いちらん）は上位（じょうい）25か国（こく）だけです。リストにない国（くに）が「順位（じゅんい）なし」という意味（いみ）ではありません。くわしくはGFPの<a href="https://www.globalfirepower.com/disclaimer.php" target="_blank" rel="noopener noreferrer">説明（せつめい）</a>を読（よ）んでください。</p>
-          <p>このページはGFPの公式（こうしき）ページではありません。データを見るときは大人（おとな）といっしょに出典（しゅってん）も確認（かくにん）してください。</p>
+          <p id="source-description"></p>
+          <p id="source-limitation"></p>
+          <p><a id="source-link" href="#" target="_blank" rel="noopener noreferrer"></a></p>
+          <p>このページはデータ提供元（ていきょうもと）の公式（こうしき）ページではありません。出典（しゅってん）と説明（せつめい）も確認（かくにん）してください。</p>
         </div>
       </details>
     </main>
 
     <footer class="app-footer">
       <span>ランキングは参考（さんこう）として見（み）てください。</span>
-      <a href="https://www.globalfirepower.com/" target="_blank" rel="noopener noreferrer">Global Firepower ↗</a>
+      <span>出典と注意点は「データの出典と説明」をご確認ください。</span>
     </footer>
 
     <script src="./app.js"></script>
