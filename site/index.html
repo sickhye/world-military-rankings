@@ -70,6 +70,37 @@
         </article>
       </section>
 
+      <section class="race-section card" aria-labelledby="race-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">RANKING RACE</p>
+            <h2 id="race-title"><ruby>順位<rt>じゅんい</rt></ruby>のレース</h2>
+          </div>
+          <span class="race-icon" aria-hidden="true">▶</span>
+        </div>
+        <p class="race-intro">年（とし）を進（すす）めて、国（くに）の順位（じゅんい）の動（うご）きを見（み）よう。</p>
+        <div class="race-controls">
+          <button id="race-play" class="race-play" type="button" aria-label="ランキングレースを再生" aria-pressed="false">▶ 再生</button>
+          <strong id="race-year" class="race-year">—</strong>
+          <label class="race-count-control">
+            <span>表示（ひょうじ）</span>
+            <select id="race-count" aria-label="表示する国の数">
+              <option value="10">上位（じょうい）10か国</option>
+              <option value="25">上位（じょうい）25か国</option>
+              <option value="all">すべて</option>
+            </select>
+          </label>
+        </div>
+        <label class="race-slider-label" for="race-range">
+          <span>古（ふる）い年（とし）</span>
+          <span>新（あたら）しい年（とし）</span>
+        </label>
+        <input id="race-range" class="race-range" type="range" min="0" max="0" value="0" step="1" aria-label="レースの年を選ぶ">
+        <p id="race-status" class="visually-hidden" aria-live="polite"></p>
+        <div id="race-chart" class="race-chart" role="list" aria-label="順位レース"></div>
+        <p class="race-note">棒（ぼう）の長（なが）さは順位（じゅんい）を見（み）やすくした表示（ひょうじ）で、GFPの点数（てんすう）ではありません。公開（こうかい）された年（とし）だけを使（つか）い、更新（こうしん）なしやデータがない年（とし）の順位（じゅんい）は作（つく）っていません。</p>
+      </section>
+
       <section class="ranking-section" aria-labelledby="ranking-title">
         <div class="section-heading">
           <div>
