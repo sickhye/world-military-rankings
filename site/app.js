@@ -459,7 +459,6 @@ function selectDataset(datasetId, updateUrl = false) {
   renderRace();
   updateComparison();
 }
-
 function selectViewTab(selectedTab, moveFocus = false) {
   for (const tab of viewTabs) {
     const selected = tab === selectedTab;
