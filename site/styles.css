@@ -66,6 +66,11 @@ rt { color: #526785; font-size: .58em; font-weight: 500; letter-spacing: 0; }
 .kid-note { margin: 14px 0 0; padding: 12px 14px; border: 1px solid #f1dfb8; border-radius: 12px; background: #fff9eb; color: #644f2c; font-size: 13px; line-height: 1.8; }
 
 .card { border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 5px 18px rgba(20, 32, 51, .035); }
+.view-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin: 22px 0 13px; padding: 5px; border: 1px solid #e1e8f1; border-radius: 15px; background: #eaf0f7; }
+.view-tab { min-height: 50px; border: 0; border-radius: 11px; background: transparent; color: #607087; font-weight: 800; cursor: pointer; touch-action: manipulation; }
+.view-tab[aria-selected="true"] { background: white; color: #174b9f; box-shadow: 0 2px 8px rgba(20, 32, 51, .1); }
+.view-tab:focus-visible { outline: 3px solid rgba(47, 103, 216, .28); outline-offset: 2px; }
+.tab-panel[hidden] { display: none; }
 .year-navigator { display: grid; grid-template-columns: 90px 1fr 90px; align-items: center; padding: 8px; }
 .year-step { min-height: 54px; display: flex; align-items: center; justify-content: center; gap: 7px; border: 0; border-radius: 11px; background: transparent; color: #344967; cursor: pointer; touch-action: manipulation; }
 .year-step:hover:not(:disabled) { background: #f1f5fb; color: var(--blue); }
@@ -182,6 +187,8 @@ h2 { margin: 0; font-size: 21px; letter-spacing: -.03em; }
   .intro-copy { max-width: 330px; font-size: 15px; }
   .coverage-pill { font-size: 11px; }
   .kid-note { font-size: 12px; }
+  .view-tabs { margin: 18px 0 11px; border-radius: 13px; }
+  .view-tab { min-height: 52px; border-radius: 9px; font-size: 13px; }
   .year-navigator { grid-template-columns: 78px 1fr 78px; border-radius: 14px; }
   .year-step { min-height: 56px; gap: 4px; padding: 0 5px; }
   .year-step small { font-size: 11px; }
