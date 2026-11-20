@@ -4,7 +4,7 @@ const countryMetadata = {
   AU: { name: "オーストラリア", en: "Australia" },
   BR: { name: "ブラジル", en: "Brazil" },
   CA: { name: "カナダ", en: "Canada" },
-  CN: { name: "ちゅうごく", en: "China" },
+  CN: { name: "中国", en: "China" },
   EG: { name: "エジプト", en: "Egypt" },
   FR: { name: "フランス", en: "France" },
   DE: { name: "ドイツ", en: "Germany" },
@@ -14,38 +14,52 @@ const countryMetadata = {
   IR: { name: "イラン", en: "Iran" },
   IL: { name: "イスラエル", en: "Israel" },
   IT: { name: "イタリア", en: "Italy" },
-  JP: { name: "にほん", en: "Japan" },
+  JP: { name: "日本", en: "Japan" },
   MX: { name: "メキシコ", en: "Mexico" },
-  KP: { name: "きたちょうせん", en: "North Korea" },
+  KP: { name: "北朝鮮", en: "North Korea" },
   PK: { name: "パキスタン", en: "Pakistan" },
   PH: { name: "フィリピン", en: "Philippines" },
   PL: { name: "ポーランド", en: "Poland" },
   RU: { name: "ロシア", en: "Russia" },
   SA: { name: "サウジアラビア", en: "Saudi Arabia" },
-  KR: { name: "かんこく", en: "South Korea" },
-  ZA: { name: "みなみアフリカ", en: "South Africa" },
+  KR: { name: "韓国", en: "South Korea" },
+  ZA: { name: "南アフリカ", en: "South Africa" },
   ES: { name: "スペイン", en: "Spain" },
   SE: { name: "スウェーデン", en: "Sweden" },
   DO: { name: "ドミニカきょうわこく", en: "Dominican Republic" },
   MM: { name: "ミャンマー", en: "Myanmar" },
   SY: { name: "シリア", en: "Syria" },
-  TW: { name: "たいわん", en: "Taiwan" },
+  TW: { name: "台湾", en: "Taiwan" },
   TH: { name: "タイ", en: "Thailand" },
   TR: { name: "トルコ", en: "Turkey / Turkiye" },
   UA: { name: "ウクライナ", en: "Ukraine" },
   GB: { name: "イギリス", en: "United Kingdom" },
   US: { name: "アメリカ", en: "United States" },
   VN: { name: "ベトナム", en: "Vietnam" },
+  AE: { name: "アラブ首長国連邦", en: "United Arab Emirates" },
+  CD: { name: "コンゴ民主共和国", en: "Democratic Republic of the Congo" },
+  CF: { name: "中央アフリカ共和国", en: "Central African Republic" },
+  CG: { name: "コンゴ共和国", en: "Republic of the Congo" },
+  DO: { name: "ドミニカ共和国", en: "Dominican Republic" },
+  MK: { name: "北マケドニア", en: "North Macedonia" },
+  MM: { name: "ミャンマー", en: "Myanmar" },
+  SS: { name: "南スーダン", en: "South Sudan" },
 };
 
-const kanaCountryNames = {
-  AE: "アラブしゅちょうこくれんぽう",
-  CD: "コンゴみんしゅきょうわこく",
-  CF: "ちゅうおうアフリカきょうわこく",
-  CG: "コンゴきょうわこく",
-  MK: "きたマケドニア",
-  SS: "みなみスーダン",
-  US: "アメリカ",
+const countryRuby = {
+  AE: { markup: "アラブ<ruby>首長国連邦<rt>しゅちょうこくれんぽう</rt></ruby>", reading: "しゅちょうこくれんぽう" },
+  CD: { markup: "コンゴ<ruby>民主共和国<rt>みんしゅきょうわこく</rt></ruby>", reading: "みんしゅきょうわこく" },
+  CF: { markup: "<ruby>中央<rt>ちゅうおう</rt></ruby>アフリカ<ruby>共和国<rt>きょうわこく</rt></ruby>", reading: "ちゅうおう きょうわこく" },
+  CG: { markup: "コンゴ<ruby>共和国<rt>きょうわこく</rt></ruby>", reading: "きょうわこく" },
+  CN: { markup: "<ruby>中国<rt>ちゅうごく</rt></ruby>", reading: "ちゅうごく" },
+  DO: { markup: "ドミニカ<ruby>共和国<rt>きょうわこく</rt></ruby>", reading: "きょうわこく" },
+  JP: { markup: "<ruby>日本<rt>にほん</rt></ruby>", reading: "にほん" },
+  KP: { markup: "<ruby>北朝鮮<rt>きたちょうせん</rt></ruby>", reading: "きたちょうせん" },
+  KR: { markup: "<ruby>韓国<rt>かんこく</rt></ruby>", reading: "かんこく" },
+  MK: { markup: "<ruby>北<rt>きた</rt></ruby>マケドニア", reading: "きた" },
+  SS: { markup: "<ruby>南<rt>みなみ</rt></ruby>スーダン", reading: "みなみ" },
+  TW: { markup: "<ruby>台湾<rt>たいわん</rt></ruby>", reading: "たいわん" },
+  ZA: { markup: "<ruby>南<rt>みなみ</rt></ruby>アフリカ", reading: "みなみ" },
 };
 
 const japaneseRegionNames = new Intl.DisplayNames(["ja"], { type: "region" });
@@ -66,11 +80,14 @@ function flagEmoji(code) {
 
 function getCountryDetails(code, englishName) {
   const known = countryMetadata[code];
-  if (known) return known;
+  if (known) return { ...known, reading: countryRuby[code]?.reading ?? "" };
   const localized = japaneseRegionNames.of(code);
-  const kanaName = kanaCountryNames[code];
-  const name = kanaName || (localized && !/\p{Script=Han}/u.test(localized) ? localized : englishName);
-  return { name: name || englishName, en: englishName };
+  const name = localized && !/\p{Script=Han}/u.test(localized) ? localized : englishName;
+  return { name: name || englishName, en: englishName, reading: "" };
+}
+
+function countryNameMarkup(code, fallbackName) {
+  return countryRuby[code]?.markup ?? fallbackName;
 }
 
 function yearStatus(year) {
@@ -110,6 +127,7 @@ function renderRanking() {
   }) ?? [];
   const filteredRows = rows.filter((entry) => (
     entry.name.toLocaleLowerCase("ja").includes(query)
+    || entry.reading.toLocaleLowerCase("ja").includes(query)
     || entry.en.toLowerCase().includes(query)
     || entry.code.toLowerCase().includes(query)
   ));
@@ -154,7 +172,7 @@ function renderRanking() {
       </span>
       <span class="country">
         <span class="flag" role="img" aria-label="${entry.name}の国旗">${flagEmoji(entry.code)}</span>
-        <span><span class="country-name">${entry.name}</span><span class="country-en">${entry.en}</span></span>
+        <span><span class="country-name">${countryNameMarkup(entry.code, entry.name)}</span><span class="country-en">${entry.en}</span></span>
       </span>
     `;
     list.append(row);
@@ -204,7 +222,8 @@ function renderComparison() {
         : "かわらない";
     const row = document.createElement("div");
     row.className = "change-row";
-    row.innerHTML = `<span>${getCountryDetails(entry.code, "").name}</span><strong>${compareYear}年 #${comparisonRanks.get(entry.code)} → ${year}年 #${entry.rank} · ${trend}</strong>`;
+    const country = getCountryDetails(entry.code, "");
+    row.innerHTML = `<span>${countryNameMarkup(entry.code, country.name)}</span><strong>${compareYear}年 #${comparisonRanks.get(entry.code)} → ${year}年 #${entry.rank} · ${trend}</strong>`;
     list.append(row);
   }
   compareMessage.after(list);
